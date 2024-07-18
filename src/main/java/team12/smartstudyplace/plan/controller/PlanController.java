@@ -3,7 +3,7 @@ package team12.smartstudyplace.plan.controller;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-import team12.smartstudyplace.mqtt.presentation.dto.MqttResponse;
+import team12.smartstudyplace.mqtt.service.MqttService;
 import team12.smartstudyplace.plan.presentation.dto.PlanDescriptions;
 import team12.smartstudyplace.plan.presentation.dto.PlanRequest;
 import team12.smartstudyplace.plan.presentation.dto.PlanResponse;
@@ -17,10 +17,14 @@ import java.util.Map;
 public class PlanController {
 
     private final PlanService planService;
+    private final MqttService mqttService;
+    private final MqttService.MqttGateway mqttGateway;
 
     @Autowired
-    public PlanController(PlanService planService) {
+    public PlanController(PlanService planService, MqttService mqttService, MqttService.MqttGateway mqttGateway) {
       this.planService = planService;
+      this.mqttService = mqttService;
+      this.mqttGateway = mqttGateway;
     }
 
 
@@ -30,6 +34,8 @@ public class PlanController {
       PlanResponse planResponse = PlanResponse.builder().plans(plans).build();
       return ResponseEntity.ok(planResponse);
     }
+
+
 
     @PostMapping
       public void createPlan(@RequestBody PlanRequest planRequest) {

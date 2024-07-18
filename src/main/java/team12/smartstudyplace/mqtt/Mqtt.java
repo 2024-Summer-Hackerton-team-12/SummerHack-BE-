@@ -18,7 +18,6 @@ public class Mqtt {
   @GeneratedValue(strategy = GenerationType.IDENTITY)
   private Long id;
 
-  private String clientId;
   private double humidity;
   private double temperature;
   private String ledStatus;

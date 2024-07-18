@@ -16,7 +16,6 @@ import org.springframework.messaging.MessageHandler;
 import team12.smartstudyplace.mqtt.presentation.dto.MqttListener;
 import team12.smartstudyplace.mqtt.service.MqttService;
 
-
 @Configuration
 public class MqttConfig {
 
@@ -86,6 +85,9 @@ public class MqttConfig {
   public MqttConnectOptions mqttConnectOptions() {
     MqttConnectOptions options = new MqttConnectOptions();
     options.setServerURIs(new String[]{brokerUrl});
+    options.setAutomaticReconnect(true);
+    options.setCleanSession(true);
+    options.setConnectionTimeout(10);
     return options;
   }
 }
