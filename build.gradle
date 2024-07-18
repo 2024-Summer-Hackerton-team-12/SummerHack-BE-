@@ -13,6 +13,11 @@ java {
     }
 }
 
+jar {
+    manifest {
+        attributes 'Main-Class': 'team12.smartstudyplace.SmartStudyPlaceAppication'
+    }
+}
 
 configurations {
     compileOnly {
